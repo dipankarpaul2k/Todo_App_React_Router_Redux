@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { addTodo } from "../features/todoSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const TodoForm = ({}) => {
   const todoTitleRef = useRef();
@@ -18,6 +19,7 @@ const TodoForm = ({}) => {
   function handleAddTodo() {
     if (todoTitle.trim() !== "" && todoContent.trim() !== "") {
       dispatch(addTodo({ title: todoTitle, content: todoContent }));
+      toast.info("Todo saved successfully.");
       todoFormRef.current.reset();
     }
   }

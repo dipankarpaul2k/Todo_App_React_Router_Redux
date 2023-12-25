@@ -1,36 +1,53 @@
 // rrd import
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// layout import
-import MainLayout from "./layouts/MainLayout";
-// pages import
-import Home, { homeAction, homeLoader } from "./pages/Home";
-import Error404 from "./pages/Error404";
-import Error from "./pages/Error";
 // actions import
 import logoutAction from "./actions/logoutAction";
+// layout import
+import MainLayout, { MainLayoutLoader } from "./layouts/MainLayout";
+// pages import
+import HomePage, { homePageAction, homePageLoader } from "./pages/HomePage";
+import NotFoundPage from "./pages/error/NotFoundPage";
+import ErrorPage from "./pages/error/ErrorPage";
+import TodoListPage from "./pages/TodoListPage";
+import TodoItemPage from "./pages/TodoItemPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    loader: MainLayoutLoader,
     children: [
       {
-        path: "/",
-        element: <Home />,
-        errorElement: <Error/>,
-        loader: homeLoader,
-        action: homeAction,
+        index: true,
+        element: <HomePage />,
+        errorElement: <ErrorPage />,
+        loader: homePageLoader,
+        action: homePageAction,
         id: "home",
       },
       {
         path: "logout",
         action: logoutAction,
       },
+      {
+        path: "todos",
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <TodoListPage />,
+          },
+          {
+            path: ":id",
+            element: <TodoItemPage />,
+          },
+        ],
+      },
     ],
   },
   {
     path: "*",
-    element: <Error404 />,
+    element: <NotFoundPage />,
   },
 ]);
 

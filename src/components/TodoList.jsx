@@ -1,25 +1,20 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import TodoItem from "./TodoItem";
 
-export default function TodoList() {
-  const todos = useSelector((state) => state.todos);
-  const result = Object.groupBy(todos, ({ completed }) => completed);
-  const pendingTodos = result.false?.toSorted(
-    (a, b) => b.createdAt - a.createdAt
+export default function TodoList({ todos, listHeading, isOpen = true }) {
+  return (
+    <>
+      {/* Todo list accordion */}
+      {todos && todos.length && (
+        <details open={isOpen} className="todo_list_accordion">
+          <summary role="button">{listHeading}</summary>
+          <div className="todo_list_content">
+            {todos?.map((todo) => (
+              <TodoItem key={todo.id} todo={todo} />
+            ))}
+          </div>
+        </details>
+      )}
+    </>
   );
-  if (todos.length === 0) {
-    return (
-      <div className="headings" style={{ textAlign: "center" }}>
-        <h2>Yo!</h2>
-        <p>Add some task in your todo list.</p>
-      </div>
-    );
-  } else {
-    return (
-      <>
-        <div>
-          <p>todo list</p>
-        </div>
-      </>
-    );
-  }
 }

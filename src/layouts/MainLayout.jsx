@@ -1,11 +1,16 @@
 // rrd import
-import { Outlet, useRouteLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 // component import
 import NavBar from "../components/NavBar";
+import { fetchData } from "../helperFns";
+
+export function MainLayoutLoader() {
+  const userName = fetchData("userName");
+  return { userName };
+}
 
 export default function MainLayout() {
-  const { userName } = useRouteLoaderData("home");
-  
+  const { userName } = useLoaderData();
 
   return (
     <>

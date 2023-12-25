@@ -13,17 +13,6 @@ h1 {
   margin-bottom: 1rem;
 }
 
-@media (max-width: 576px) {
-  .btn.logout_btn {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: var(--primary);
-  }
-  .btn span {
-    display: none;
-  }
-}
 /* ------------------------------- */
 /* Main layout component */
 
@@ -42,12 +31,14 @@ h1 {
 .main_content {
   flex: 1 1 auto;
   align-self: auto;
+  min-height: calc(100vh - 150px);
 }
 
 .footer {
   flex: 0 1 auto;
   align-self: auto;
   text-align: center;
+  margin-top: 1rem;
 }
 
 .footer p:first-child {
@@ -67,14 +58,106 @@ nav ul li {
 .logout_form {
   margin-bottom: 0;
 }
+
+@media (max-width: 576px) {
+  .btn.logout_btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--primary);
+    padding-right: 0;
+  }
+
+  .btn.logout_btn span {
+    display: none;
+  }
+}
+
 /* ------------------------------- */
 /* Home page component */
+.viewAll_todo_btn {
+  text-align: center;
+}
+/* ------------------------------- */
+/* Intro component */
+.intro > .grid {
+  min-height: calc(100vh - 150px);
+}
+
+.intro_grid_form,
+.intro_grid_svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro_grid_form .headings {
+  text-wrap: balance;
+}
 
 /* ------------------------------- */
 /* Todolist component */
+.todo_list_accordion {
+  border-bottom: none;
+  margin-bottom: 0;
+}
 
 /* ------------------------------- */
-/* Todo component */
+/* Todo item component */
+.todo_item {
+  margin-bottom: 1rem;
+}
+
+.todo_item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--secondary);
+  border-left: 5px solid var(--secondary);
+  border-bottom: 0.3px solid var(--secondary);
+  padding: 14px 1rem;
+}
+
+.todo_item a:hover,
+.todo_item a:focus,
+.todo_item a:active {
+  text-decoration: none;
+}
+
+/* ------------------------------- */
+/* Todo item page component */
+.todo_item_page_con {
+  min-height: 100vh;
+}
+
+.todo_item_page_con .headings {
+  position: relative;
+  border-bottom: 1px solid var(--secondary);
+  padding-bottom: 1rem;
+  /* padding-top: 1.5rem; */
+}
+
+.todo_item_page_con .headings button {
+  width: fit-content;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 3;
+  color: var(--primary-inverse);
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.todo_item_page_footer {
+  padding: 1rem;
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
 /* ------------------------------- */
 /* Error page component */

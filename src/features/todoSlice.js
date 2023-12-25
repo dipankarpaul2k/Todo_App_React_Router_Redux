@@ -7,7 +7,7 @@ import { fetchData, saveData } from "../helperFns";
 // get the stored todos as initial state if exist
 const getInitialTodos = () => {
   const storedTodos = fetchData("todos");
-  return storedTodos ? storedTodos : [];
+  return storedTodos || [];
 };
 
 const todoSlice = createSlice({

@@ -79,6 +79,10 @@ nav ul li {
 
 /* ------------------------------- */
 /* Home page component */
+.accent{
+  color: var(--primary);
+}
+
 .viewAll_todo_btn {
   text-align: center;
 }
@@ -146,16 +150,20 @@ nav ul li {
 .todo_item_page_con .headings {
   position: relative;
   border-bottom: 1px solid var(--secondary);
-  padding-bottom: 1rem;
+  padding-bottom: 12px;
 }
 
 .todo_item_page_con .headings p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-right: 10px;
   margin: 0;
+  margin-right: 5px;
   padding: 0;
+}
+
+.todo_updated_time{
+  font-size: 0.9rem;
 }
 
 .todo_item_page_con .headings .pinned_btn {
@@ -175,7 +183,7 @@ nav ul li {
 .pinned_btn span {
   margin: 0;
   padding: 0;
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .todo_item_page_footer {

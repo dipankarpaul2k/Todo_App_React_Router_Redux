@@ -67,3 +67,21 @@ export function formatTodoTimestamp(todoCreatedAt) {
 export const flashToast = (text) => {
   return toast.info(text);
 };
+
+export function formatDateTime(milliseconds) {
+  const currentDate = new Date(milliseconds);
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const day = String(currentDate.getDate()).padStart(2, "0");
+
+  const hours = currentDate.getHours();
+  const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+  const seconds = String(currentDate.getSeconds()).padStart(2, "0");
+  const period = hours >= 12 ? "PM" : "AM";
+  const formattedHours = hours % 12 || 12; // Convert to 12-hour format
+
+  const formattedDateTime = `${day}-${month}-${year} ${formattedHours}:${minutes}:${seconds} ${period}`;
+  return formattedDateTime;
+}
+

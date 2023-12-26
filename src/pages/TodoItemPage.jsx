@@ -12,7 +12,7 @@ import {
 // rrd import
 import { useNavigate, useParams } from "react-router-dom";
 // helpers function import
-import { flashToast, formatTodoTimestamp } from "../helperFns";
+import { flashToast, formatDateTime } from "../helperFns";
 // icons import
 import {
   ArrowUUpLeft,
@@ -68,7 +68,7 @@ export default function TodoItemPage() {
           <div className="headings">
             <h1>{todo?.title}</h1>
             <p>
-              <span>{formatTodoTimestamp(todo?.createdAt)}</span>
+              <span className="todo_updated_time">Edited: {formatDateTime(todo?.updatedAt)}</span>
               <button
                 className="outline secondary pinned_btn"
                 onClick={() => dispatch(togglePinned(todo.id))}
@@ -102,7 +102,7 @@ export default function TodoItemPage() {
             className="todo_item_page_btns"
             onClick={() => dispatch(toggleCompleted(todo.id))}
           >
-            {todo.completed ? (
+            {todo?.completed ? (
               <>
                 <span>Active</span>
                 <ArrowUUpLeft size={24} weight="fill" />

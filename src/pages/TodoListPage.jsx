@@ -39,7 +39,7 @@ export default function TodoListPage() {
               (a, b) => b.createdAt - a.createdAt
             )}
             listHeading="Completed Todos"
-            isOpen={false}
+            isOpen={true}
           />
         </div>
       </div>

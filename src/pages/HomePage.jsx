@@ -88,10 +88,11 @@ export default function HomePage() {
                 isOpen={true}
               />
 
-              {todos && todos.length > 0 && (
+              {((todos && todos?.length > 8) ||
+                (completed?.true && completed.true?.length > 0)) && (
                 <div className="viewAll_todo_btn">
                   <Link to="/todos" role="button">
-                    View all Todos
+                    View All Todos
                   </Link>
                 </div>
               )}

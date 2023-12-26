@@ -50,7 +50,7 @@ nav ul li {
   padding: 12px;
 }
 
-.nav_logo li a{
+.nav_logo li a {
   font-size: 1.2rem;
 }
 
@@ -83,7 +83,7 @@ nav ul li {
 
 /* ------------------------------- */
 /* Home page component */
-.accent{
+.accent {
   color: var(--primary);
 }
 
@@ -148,7 +148,7 @@ nav ul li {
 /* ------------------------------- */
 /* Todo item page component */
 .todo_item_page_con {
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
 }
 
 .todo_item_page_con .headings {
@@ -166,7 +166,7 @@ nav ul li {
   padding: 0;
 }
 
-.todo_updated_time{
+.todo_updated_time {
   font-size: 0.9rem;
 }
 

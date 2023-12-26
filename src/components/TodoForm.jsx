@@ -1,8 +1,9 @@
+// react import
 import { useEffect, useRef, useState } from "react";
+// todo slice import
 import { addTodo, editTodo } from "../features/todoSlice";
+// redux toolkit import
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-import { flashToast } from "../helperFns";
 
 const TodoForm = ({ editingTodo, toggleEditingMode, setEditingTodoNull }) => {
   const todoTitleRef = useRef();
@@ -31,7 +32,6 @@ const TodoForm = ({ editingTodo, toggleEditingMode, setEditingTodoNull }) => {
       dispatch(addTodo({ title: todoTitle, content: todoContent }));
       todoFormRef.current.reset();
     }
-    return flashToast("Todo added successfully.");
   }
 
   function handleUpdateTodo() {
@@ -40,7 +40,6 @@ const TodoForm = ({ editingTodo, toggleEditingMode, setEditingTodoNull }) => {
         editTodo({ id: editingTodo.id, title: todoTitle, content: todoContent })
       );
     }
-    return flashToast("Todo updated successfully.");
   }
 
   function handleCancelBtn() {

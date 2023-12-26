@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 // Waait function
 export const waait = (miliSec) => {
   return new Promise((res) => setTimeout(res, miliSec));
@@ -61,3 +63,7 @@ export function formatTodoTimestamp(todoCreatedAt) {
     return `${day}/${month}/${year}`;
   }
 }
+
+export const flashToast = (text) => {
+  return toast.info(text);
+};

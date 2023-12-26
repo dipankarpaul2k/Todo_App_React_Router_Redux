@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // helper function imports
-import { fetchData, saveData } from "../helperFns";
+import { fetchData, flashToast, saveData } from "../helperFns";
 
 // get the stored todos as initial state if exist
 const getInitialTodos = () => {
@@ -20,9 +20,11 @@ const todoSlice = createSlice({
         title: action.payload.title,
         content: action.payload.content,
         completed: false,
+        pinned: false,
         createdAt: Date.now(),
       });
       saveData("todos", state);
+      // return flashToast("Todo added successfully.");
     },
     editTodo: (state, action) => {
       const todo = state.find((t) => t.id === action.payload.id);
@@ -30,12 +32,20 @@ const todoSlice = createSlice({
         todo.title = action.payload.title;
         todo.content = action.payload.content;
         saveData("todos", state);
+        // return flashToast("Todo updated successfully.");
       }
     },
-    toggleTodo: (state, action) => {
+    toggleCompleted: (state, action) => {
       const todo = state.find((t) => t.id === action.payload);
       if (todo) {
         todo.completed = !todo.completed;
+        saveData("todos", state);
+      }
+    },
+    togglePinned: (state, action) => {
+      const todo = state.find((t) => t.id === action.payload);
+      if (todo) {
+        todo.pinned = !todo.pinned;
         saveData("todos", state);
       }
     },
@@ -47,5 +57,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, editTodo, deleteTodo, toggleTodo } = todoSlice.actions;
+export const { addTodo, editTodo, deleteTodo, toggleCompleted, togglePinned } =
+  todoSlice.actions;
 export default todoSlice.reducer;

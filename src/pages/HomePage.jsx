@@ -41,7 +41,8 @@ export default function HomePage() {
   const { userName } = useLoaderData();
 
   const todos = useSelector((state) => state.todos);
-  const result = Object.groupBy(todos, ({ completed }) => completed);
+  const completed = Object.groupBy(todos, ({ completed }) => completed);
+  const pinned = Object.groupBy(todos, ({ pinned }) => pinned);
 
   return (
     <>
@@ -64,7 +65,7 @@ export default function HomePage() {
             </details>
           </div>
 
-          {/* Pending todo list */}
+          {/* Pinned and active todo list */}
           {todos && todos.length === 0 ? (
             <div className="headings" style={{ textAlign: "center" }}>
               <h2>Yo!</h2>
@@ -73,15 +74,21 @@ export default function HomePage() {
           ) : (
             <div className="home_todoList_con">
               <TodoList
-                todos={result.false
+                todos={pinned.true?.toSorted(
+                  (a, b) => b.createdAt - a.createdAt
+                )}
+                listHeading="Pinned Todos"
+                isOpen={true}
+              />
+              <TodoList
+                todos={completed.false
                   ?.toSorted((a, b) => b.createdAt - a.createdAt)
                   .slice(0, 8)}
-                listHeading="Currently pending todos"
+                listHeading="Active Todos"
                 isOpen={true}
-                viewAllTodoBtn={true}
               />
 
-              {todos && todos.length > 8 && (
+              {todos && todos.length > 0 && (
                 <div className="viewAll_todo_btn">
                   <Link to="/todos" role="button">
                     View all Todos

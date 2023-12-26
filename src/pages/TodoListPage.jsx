@@ -5,25 +5,41 @@ import TodoList from "../components/TodoList";
 
 export default function TodoListPage() {
   const todos = useSelector((state) => state.todos);
-  const result = Object.groupBy(todos, ({ completed }) => completed);
-  // console.log("result: ", result);
+  const completed = Object.groupBy(todos, ({ completed }) => completed);
+  const pinned = Object.groupBy(todos, ({ pinned }) => pinned);
 
   return (
     <>
       <div className="todo_list_con">
         <h1>All todos</h1>
-        <div className="pending_list_con">
+        {/* Pinned todo list */}
+        <div className="pinned_list_con">
           <TodoList
-            todos={result.false?.toSorted((a, b) => b.createdAt - a.createdAt)}
-            listHeading="Currently pending todos"
+            todos={pinned.true?.toSorted((a, b) => b.createdAt - a.createdAt)}
+            listHeading="Pinned Todos"
             isOpen={true}
           />
         </div>
+
+        {/* Active todo list */}
+        <div className="pending_list_con">
+          <TodoList
+            todos={completed.false?.toSorted(
+              (a, b) => b.createdAt - a.createdAt
+            )}
+            listHeading="Active Todos"
+            isOpen={true}
+          />
+        </div>
+        
+        {/* Completed todo list */}
         <div className="completed_list_con">
           <TodoList
-            todos={result.true?.toSorted((a, b) => b.createdAt - a.createdAt)}
-            listHeading="Completed todos"
-            isOpen={true}
+            todos={completed.true?.toSorted(
+              (a, b) => b.createdAt - a.createdAt
+            )}
+            listHeading="Completed Todos"
+            isOpen={false}
           />
         </div>
       </div>

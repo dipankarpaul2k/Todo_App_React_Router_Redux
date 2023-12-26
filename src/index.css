@@ -46,26 +46,30 @@ h1 {
 }
 /* ------------------------------- */
 /* Navbar component */
-
 nav ul li {
   padding: 12px;
 }
 
-.nav_links .dropdown_link summary::after {
-  display: none;
+.nav_links {
+  /* display: none; */
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
 
 .logout_form {
   margin-bottom: 0;
 }
 
+.btn.logout_btn {
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+}
+
 @media (max-width: 576px) {
-  .btn.logout_btn {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: var(--primary);
-    padding-right: 0;
+  .nav_links li a {
+    padding: 0;
   }
 
   .btn.logout_btn span {
@@ -125,6 +129,15 @@ nav ul li {
 }
 
 /* ------------------------------- */
+/* Todo form component */
+.todo_form_btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ------------------------------- */
 /* Todo item page component */
 .todo_item_page_con {
   min-height: 100vh;
@@ -134,29 +147,60 @@ nav ul li {
   position: relative;
   border-bottom: 1px solid var(--secondary);
   padding-bottom: 1rem;
-  /* padding-top: 1.5rem; */
 }
 
-.todo_item_page_con .headings button {
-  width: fit-content;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  z-index: 3;
-  color: var(--primary-inverse);
+.todo_item_page_con .headings p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 10px;
+  margin: 0;
   padding: 0;
+}
+
+.todo_item_page_con .headings .pinned_btn {
+  width: fit-content;
+  padding: 0;
+  border-radius: 50%;
   border: none;
   outline: none;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.pinned_btn:focus {
+  all: unset;
+}
+
+.pinned_btn span {
+  margin: 0;
+  padding: 0;
+  margin-right: 5px;
 }
 
 .todo_item_page_footer {
-  padding: 1rem;
+  padding: 3px 1rem;
   position: sticky;
   bottom: 0;
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 1rem;
+}
+
+.todo_item_page_btns {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (max-width: 576px) {
+  .todo_item_page_btns span {
+    display: none;
+  }
 }
 
 /* ------------------------------- */
@@ -188,7 +232,6 @@ nav ul li {
 /* 404 error page component */
 
 /* ------------------------------- */
-
 /* React Toastify */
 .Toastify__close-button {
   width: fit-content;

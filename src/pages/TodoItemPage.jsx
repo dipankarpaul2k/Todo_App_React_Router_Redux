@@ -68,7 +68,11 @@ export default function TodoItemPage() {
           <div className="headings">
             <h1>{todo?.title}</h1>
             <p>
-              <span className="todo_updated_time">Edited: {formatDateTime(todo?.updatedAt)}</span>
+              <span className="todo_updated_time">
+                Edited: {formatDateTime(todo?.updatedAt)}
+              </span>
+              
+              {/* Pnned button */}
               <button
                 className="outline secondary pinned_btn"
                 onClick={() => dispatch(togglePinned(todo.id))}

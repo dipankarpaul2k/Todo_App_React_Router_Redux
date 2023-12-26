@@ -31,15 +31,16 @@ const router = createBrowserRouter([
       },
       {
         path: "todos",
-        errorElement: <ErrorPage />,
         children: [
           {
             index: true,
             element: <TodoListPage />,
+            errorElement: <ErrorPage />,
           },
           {
             path: ":id",
             element: <TodoItemPage />,
+            errorElement: <ErrorPage />,
           },
         ],
       },

@@ -136,6 +136,14 @@ nav ul li {
   text-decoration: none;
 }
 
+.todo_item .todo_item_title {
+  width: 69%;
+}
+.todo_item .todo_item_DateTime {
+  width: 30%;
+  text-align: end;
+}
+
 /* ------------------------------- */
 /* Todo form component */
 .todo_form_btns {

@@ -6,8 +6,8 @@ export default function TodoItem({ todo, viewAllTodo }) {
     <>
       <div className="todo_item">
         <Link to={`/todos/${todo.id}`}>
-          <span>{todo.title}</span>
-          <span>{formatTodoTimestamp(todo.createdAt)}</span>
+          <span className="todo_item_title">{todo.title}</span>
+          <span className="todo_item_DateTime">{formatTodoTimestamp(todo.createdAt)}</span>
         </Link>
       </div>
     </>

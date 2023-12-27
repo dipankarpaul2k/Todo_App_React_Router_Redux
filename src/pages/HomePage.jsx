@@ -10,6 +10,7 @@ import { fetchData, saveData } from "../helperFns";
 import Intro from "../components/Intro";
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
+import { useEffect, useState } from "react";
 
 // loader function
 export function homePageLoader() {
@@ -40,9 +41,17 @@ export async function homePageAction({ request }) {
 export default function HomePage() {
   const { userName } = useLoaderData();
 
+  const [completed, setCompleted] = useState({});
+  const [pinned, setPinned] = useState({});
+
   const todos = useSelector((state) => state.todos);
-  const completed = Object.groupBy(todos, ({ completed }) => completed);
-  const pinned = Object.groupBy(todos, ({ pinned }) => pinned);
+
+  useEffect(() => {
+    const isCompleted = Object.groupBy(todos, ({ completed }) => completed);
+    setCompleted(isCompleted);
+    const isPinned = Object.groupBy(todos, ({ pinned }) => pinned);
+    setPinned(isPinned);
+  }, [todos]);
 
   return (
     <>
@@ -66,7 +75,7 @@ export default function HomePage() {
           </div>
 
           {/* Pinned and active todo list */}
-          {todos && todos.length === 0 ? (
+          {todos && todos?.length === 0 ? (
             <div className="headings" style={{ textAlign: "center" }}>
               <h2>Yo!</h2>
               <p>Add some task in your todo list.</p>

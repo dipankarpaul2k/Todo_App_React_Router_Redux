@@ -84,7 +84,6 @@ export default function TodoItemPage() {
                   </>
                 ) : (
                   <>
-                    <span></span>
                     <PushPin size={20} />
                   </>
                 )}
